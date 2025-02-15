@@ -5,7 +5,9 @@
     .DATA
 
 DATA_SEG SEGMENT
-HelloMsg DB 13,10, 'TYPE A NUMBER: ',13,10,'$'
+FirstMsg DB 13,10, 'TYPE A NUMBER: ',13,10,'$'
+SecondMsg DB 13,10, 'TYPE ANOTHER NUMBER: ',13,10,'$'
+SumMsg DB 13,10, 'THE SUM OF THE TWO NUMBERS IS: ',13,10,'$'
 DATA_SEG ENDS
 
     .CODE
@@ -15,7 +17,7 @@ ProgStart:
 
 ; this interupt prints the message into the screen
     MOV AH,9
-    MOV DX,OFFSET HelloMsg
+    MOV DX,OFFSET FirstMsg
     INT 21h
 
 ; this interupt reads user input and assigns it into AL
@@ -26,7 +28,7 @@ ProgStart:
 
 ; this interupt prints the message into the screen
     MOV AH,9
-    MOV DX,OFFSET HelloMsg
+    MOV DX,OFFSET SecondMsg
     INT 21h
 
 ; this interupt reads user input and assigns it into AL
@@ -35,8 +37,13 @@ ProgStart:
     ADD BH,AL
 
 ; this interput outputs newline (line feed)
-    MOV DL,10
-    MOV AH,2
+;    MOV DL,10
+;    MOV AH,2
+;    INT 21h
+
+; this interupt prints the message into the screen
+    MOV AH,9
+    MOV DX,OFFSET SumMsg
     INT 21h
 
 ; this interput takes char from DL and prints it into user screen after adding 1
